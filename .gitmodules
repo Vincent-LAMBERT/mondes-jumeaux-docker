@@ -1,0 +1,3 @@
+[submodule "image-server/mondes-jumeaux-servlets"]
+	path = image-server/mondes-jumeaux-servlets
+	url = git@github.com:Vincent-LAMBERT/mondes-jumeaux-servlets.git
