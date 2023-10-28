@@ -12,7 +12,11 @@ services:
     volumes:
       - db:/var/lib/mysql
       - ./database/initDatabase.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./database/fillDatabase.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./database/fillBase.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./database/fillRelations.sql:/docker-entrypoint-initdb.d/3.sql
+    networks:
+      tw_network:
+        ipv4_address: 172.16.238.11
   app:
     depends_on:
       - mariadb
@@ -29,6 +33,16 @@ services:
       - DB_PORT=$MYSQLDB_DOCKER_PORT
     stdin_open: true
     tty: true
+    networks:
+      tw_network:
+        ipv4_address: 172.16.238.10
 
 volumes: 
   db:
+  
+networks:
+  tw_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24

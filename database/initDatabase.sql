@@ -4,7 +4,9 @@ CREATE DATABASE IF NOT EXISTS TwinWorlds;
 
 -- USERS
 
-CREATE USER IF NOT EXISTS 'TwinWorldsUser'@'%' IDENTIFIED BY 'Zordlon';
+GRANT ALL PRIVILEGES ON TwinWorlds.* TO 'TwinWorldsUser'@'%' IDENTIFIED BY 'Zordlon';
+
+FLUSH PRIVILEGES;
 
 USE TwinWorlds;
 
@@ -50,39 +52,6 @@ CREATE TABLE Competences
     PRIMARY KEY(NomComp),
     CONSTRAINT type_comp       CHECK (CompType IN('Commune', 'Non-Commune'))
 );
-
-INSERT INTO Competences (NomComp, CompType, ImgComp)
-VALUES
-('Social', 'Commune', '/images/social.png'),
-('Equitation', 'Commune', '/images/equitation.png'),
-('Discrétion', 'Commune', '/images/discretion.png'),
-('Peur', 'Commune', '/images/peur.png'),
-('Nage', 'Commune', '/images/nage.png'),
-('Vision', 'Commune', '/images/vision.png'),
-('Audition', 'Commune', '/images/audition.png'),
-('Constitution', 'Commune', '/images/constitution.png'),
-('Force', 'Commune', '/images/force.png'),
-('Agilité', 'Commune', '/images/agilite.png'),
-('Sens Spirituel', 'Non-Commune', '/images/sensSpirituel.png'),
-('Linguistique', 'Non-Commune', '/images/linguistique.png'),
-('Vol', 'Non-Commune', '/images/vol.png'),
-('Sabotage', 'Non-Commune', '/images/sabotage.png'),
-('Traque', 'Non-Commune', '/images/traque.png'),
-('Dressage', 'Non-Commune', '/images/dressage.png'),
-('Musique', 'Non-Commune', '/images/musique.png'),
-('Cuisine', 'Non-Commune', '/images/cuisine.png'),
-('Pharmacologie', 'Non-Commune', '/images/pharmacologie.png'),
-('Medecine', 'Non-Commune', '/images/medecine.png'),
-('Runes', 'Non-Commune', '/images/runes.png'),
-('Psychologie', 'Non-Commune', '/images/psychologie.png'),
-('Prière', 'Non-Commune', '/images/priere.png'), 
-('Zoologie', 'Non-Commune', '/images/zoologie.png'), 
-('Botanique', 'Non-Commune', '/images/botanique.png'), 
-('Géologie', 'Non-Commune', '/images/geologie.png'), 
-('Connaissances', 'Non-Commune', '/images/connaissances.png'), 
-('Artisanat', 'Non-Commune', '/images/artisanat.png'), 
-('Ingénierie', 'Non-Commune', '/images/ingenierie.png'), 
-('Alchimie', 'Non-Commune', '/images/alchimie.png');
 
 CREATE TABLE Ethnies
 (
@@ -208,14 +177,6 @@ CREATE TABLE TypeBonus
     CONSTRAINT Taille_Min_TypeBonus       CHECK (CHAR_LENGTH(TypeBonus)>2)
 );
 
-INSERT INTO TypeBonus (TypeBonus, Visible)
-VALUES
-('Arme', 1),
-('Formation', 1),
-('Maîtrise innée', 1),
-('Sensations spirituelles', 1),
-('Apprentissage long', 1);
-
 -- Orientations
 
 CREATE TABLE Orientations
@@ -238,14 +199,6 @@ CREATE TABLE StylesCombat
     ImgStyle            VARCHAR(50),
     PRIMARY KEY(NomStyle)
 );
-
-INSERT INTO StylesCombat (NomStyle, ImgStyle)
-VALUES
-('Arme à une main', '/images/1main.png'),
-('Arme à deux mains', '/images/2mains.png'),
-('Arme de tir/lancer', '/images/tir.png'),
-('Protection (Toutes armes)', '/images/protection.png'),
-('Arme de type poing/pied/dague', '/images/poing.png');
 
 CREATE TABLE Organisations
 (
@@ -487,23 +440,6 @@ CREATE TABLE CompType
     CONSTRAINT BonusT_min       CHECK (BonusT >= 0),
     CONSTRAINT BonusT_max       CHECK (BonusT <= 40)
 );
-
-INSERT INTO CompType (TypeBonus, NomComp, BonusT)
-VALUES
-('Arme', 'Force', 10),
-('Arme', 'Agilité', 10),
-('Arme', 'Peur', 10),
-('Formation', 'Discrétion', 5),
-('Formation', 'Peur', 5),
-('Formation', 'Nage', 5),
-('Formation', 'Force', 5),
-('Formation', 'Agilité', 5),
-('Formation', 'Constitution', 5),
-('Maîtrise innée', 'Sens Spirituel', 40),
-('Maîtrise innée', 'Prière', 20),
-('Sensations spirituelles', 'Sens Spirituel', 30),
-('Apprentissage long', 'Connaissances', 20),
-('Apprentissage long', 'Linguistique', 10);
 
 CREATE TABLE FacPosRace
 (
