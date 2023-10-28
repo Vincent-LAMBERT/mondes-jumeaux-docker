@@ -1,6 +1,6 @@
 FROM node:14
 
-WORKDIR /bezkoder-app
+WORKDIR /website
 COPY package.json .
 RUN npm install
 COPY . .

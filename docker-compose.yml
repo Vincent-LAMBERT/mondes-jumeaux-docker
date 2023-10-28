@@ -16,11 +16,25 @@ services:
       - ./database/fillRelations.sql:/docker-entrypoint-initdb.d/3.sql
     networks:
       tw_network:
-        ipv4_address: 172.16.238.11
-  app:
+        ipv4_address: 172.16.238.10
+  # image-server:
+  #   build: ./image-server
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   ports:
+  #     - $IMAGE_SERVER_LOCAL_PORT:$IMAGE_SERVER_DOCKER_PORT
+  #   # volumes:
+  #   #   - images:/home/Images
+  #   stdin_open: true
+  #   tty: true # "keep the container running" (https://kossy0701.medium.com/what-is-tty-true-in-docker-compose-yml-47a72891aee2)
+  #   networks:
+  #     tw_network:
+  #       ipv4_address: 
+  #         ipv4_address: 172.16.238.11
+  website:
     depends_on:
       - mariadb
-    build: ./bezkoder-app
+    build: ./website
     restart: unless-stopped
     env_file: ./.env
     ports:
@@ -32,13 +46,14 @@ services:
       - DB_NAME=$MYSQLDB_DATABASE
       - DB_PORT=$MYSQLDB_DOCKER_PORT
     stdin_open: true
-    tty: true
+    tty: true # "keep the container running" (https://kossy0701.medium.com/what-is-tty-true-in-docker-compose-yml-47a72891aee2)
     networks:
       tw_network:
-        ipv4_address: 172.16.238.10
+        ipv4_address: 172.16.238.12
 
 volumes: 
   db:
+  # images:
   
 networks:
   tw_network:
