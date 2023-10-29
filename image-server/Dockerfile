@@ -3,7 +3,7 @@ FROM tomcat:latest
 
 WORKDIR /image-server/
 
-# # Copy the images folder
+# Copy the images folder
 COPY images/ /usr/local/tomcat/webapps/images/
 
 # Copy the war file to the container
