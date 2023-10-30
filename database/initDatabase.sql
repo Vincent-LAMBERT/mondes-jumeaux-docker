@@ -10,35 +10,35 @@ FLUSH PRIVILEGES;
 
 USE TwinWorlds;
 
--- Race
+-- Species
 
-CREATE TABLE Races
+CREATE TABLE Species
 (
-    NomRace             VARCHAR(30),
-    DescriptionRace     VARCHAR(500),
-    ImgRace             VARCHAR(250),
-    CaCRace             INT,
-    DistanceRace        INT,
-    MagieRace           INT,
-    EsRace              INT,
-    PvRace              INT,
+    NomSpecies             VARCHAR(30),
+    DescriptionSpecies     VARCHAR(500),
+    ImgSpecies             VARCHAR(250),
+    CaCSpecies             INT,
+    DistanceSpecies        INT,
+    MagieSpecies           INT,
+    EsSpecies              INT,
+    PvSpecies              INT,
     EsperanceVie        INT,
-    NatureRace          VARCHAR(20),
+    NatureSpecies          VARCHAR(20),
     TailleMoy           FLOAT,
     MasseMoy            INT,
     Sexes               VARCHAR(10),
-    PRIMARY KEY(NomRace),
-    CONSTRAINT Taille_Min_NomRace       CHECK (CHAR_LENGTH(NomRace)>2),
-    CONSTRAINT Nature_connue       CHECK (NatureRace IN('Divine', 'Démoniaque', 'Divine/Démoniaque')),
+    PRIMARY KEY(NomSpecies),
+    CONSTRAINT Taille_Min_NomSpecies       CHECK (CHAR_LENGTH(NomSpecies)>2),
+    CONSTRAINT Nature_connue       CHECK (NatureSpecies IN('Divine', 'Démoniaque', 'Divine/Démoniaque')),
     CONSTRAINT EsperanceVie_pos       CHECK (EsperanceVie >= 0),
     CONSTRAINT TailleMoy_pos       CHECK (TailleMoy >= 0),
     CONSTRAINT MasseMoy_pos       CHECK (MasseMoy >= 0),
-    CONSTRAINT CaCRace_min       CHECK (CaCRace >= 35),
-    CONSTRAINT DistanceRace_min       CHECK (DistanceRace >= 35),
-    CONSTRAINT MagieRace_min       CHECK (MagieRace >= 35),
-    CONSTRAINT CaCRace_max       CHECK (CaCRace <= 60),
-    CONSTRAINT DistanceRace_max       CHECK (DistanceRace <= 60),
-    CONSTRAINT MagieRace_max       CHECK (MagieRace <= 60),
+    CONSTRAINT CaCSpecies_min       CHECK (CaCSpecies >= 35),
+    CONSTRAINT DistanceSpecies_min       CHECK (DistanceSpecies >= 35),
+    CONSTRAINT MagieSpecies_min       CHECK (MagieSpecies >= 35),
+    CONSTRAINT CaCSpecies_max       CHECK (CaCSpecies <= 60),
+    CONSTRAINT DistanceSpecies_max       CHECK (DistanceSpecies <= 60),
+    CONSTRAINT MagieSpecies_max       CHECK (MagieSpecies <= 60),
     CONSTRAINT sexes_connus       CHECK (Sexes IN('MFI', 'M', 'F'))
 );
 
@@ -58,11 +58,11 @@ CREATE TABLE Ethnies
     NomEthnie           VARCHAR(30),
     ImgEthnie           VARCHAR(250),
     DescriptionEthnie   VARCHAR(200),
-    NomRace                VARCHAR(30),
+    NomSpecies                VARCHAR(30),
     NomComp             VARCHAR(50),
     PRIMARY KEY(NomEthnie),
     CONSTRAINT Taille_Min_NomEthnie       CHECK (CHAR_LENGTH(NomEthnie)>2),
-    CONSTRAINT ethnie_pour_race                 FOREIGN KEY (NomRace)               REFERENCES Races(NomRace)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    CONSTRAINT ethnie_pour_espece                 FOREIGN KEY (NomSpecies)               REFERENCES Species(NomSpecies)                   ON DELETE CASCADE      ON UPDATE CASCADE,
     CONSTRAINT comp_pour_ethnie                 FOREIGN KEY (NomComp)            REFERENCES Competences(NomComp)             ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
@@ -224,41 +224,41 @@ CREATE TABLE Organisations
     CONSTRAINT AvisAge_connu      CHECK(AvisAge IN ("Normalisée", "Tolérée", "Prohibée", "Criminalisée"))
 );
 
-CREATE TABLE Animaux 
+CREATE TABLE Beasts 
 (
-    NomAnimal           VARCHAR(50),
-    TypeAnimal          VARCHAR(50),
-    DescriptionAnimal   VARCHAR(500),
-    ImgAnimal           VARCHAR(250),
-    CaCAnimal           INT,
-    DistanceAnimal      INT,
-    MagieAnimal         INT,
-    EsAnimal            INT,
-    PvAnimal            INT,
-    ArmureNatAnimal     INT,
-    EsperanceVieAnimal  INT,
-    NatureAnimal        VARCHAR(20),
-    TailleMoyAnimal     FLOAT,
-    MasseMoyAnimal      INT,
-    PRIMARY KEY(NomAnimal),
-    CONSTRAINT Taille_Min_NomAnimal       CHECK (CHAR_LENGTH(NomAnimal)>2),
-    CONSTRAINT Taille_Min_TypeAnimal       CHECK (CHAR_LENGTH(NomAnimal)>2),
-    CONSTRAINT Type_MondeAnimal_Connu      CHECK(TypeAnimal IN ("Isylgräm", "Jukingräm")),
-    CONSTRAINT CaCAnimal_min       CHECK (CaCAnimal >= 10),
-    CONSTRAINT DistanceAnimal_min       CHECK (DistanceAnimal >= 10),
-    CONSTRAINT MagieAnimal_min       CHECK (MagieAnimal >= 10),
-    CONSTRAINT CaCAnimal_max       CHECK (CaCAnimal <= 90),
-    CONSTRAINT DistanceAnimal_max       CHECK (DistanceAnimal <= 90),
-    CONSTRAINT MagieAnimal_max       CHECK (MagieAnimal <= 90),
-    CONSTRAINT EsperanceVieAnimal_pos       CHECK (EsperanceVieAnimal >= 0),
-    CONSTRAINT PvAnimal_pos       CHECK (PvAnimal >= 0),
-    CONSTRAINT EsAnimal_pos       CHECK (EsAnimal >= 0),
-    CONSTRAINT ArmureNatAnimal_pos       CHECK (ArmureNatAnimal >= 0),
-    CONSTRAINT TailleMoyAnimal_pos       CHECK (TailleMoyAnimal >= 0),
-    CONSTRAINT MasseMoyAnimal_pos       CHECK (MasseMoyAnimal >= 0)
+    NomBeast           VARCHAR(50),
+    TypeBeast          VARCHAR(50),
+    DescriptionBeast   VARCHAR(500),
+    ImgBeast           VARCHAR(250),
+    CaCBeast           INT,
+    DistanceBeast      INT,
+    MagieBeast         INT,
+    EsBeast            INT,
+    PvBeast            INT,
+    ArmureNatBeast     INT,
+    EsperanceVieBeast  INT,
+    NatureBeast        VARCHAR(20),
+    TailleMoyBeast     FLOAT,
+    MasseMoyBeast      INT,
+    PRIMARY KEY(NomBeast),
+    CONSTRAINT Taille_Min_NomBeast       CHECK (CHAR_LENGTH(NomBeast)>2),
+    CONSTRAINT Taille_Min_TypeBeast       CHECK (CHAR_LENGTH(NomBeast)>2),
+    CONSTRAINT Type_MondeBeast_Connu      CHECK(TypeBeast IN ("Isylgräm", "Jukingräm")),
+    CONSTRAINT CaCBeast_min       CHECK (CaCBeast >= 10),
+    CONSTRAINT DistanceBeast_min       CHECK (DistanceBeast >= 10),
+    CONSTRAINT MagieBeast_min       CHECK (MagieBeast >= 10),
+    CONSTRAINT CaCBeast_max       CHECK (CaCBeast <= 90),
+    CONSTRAINT DistanceBeast_max       CHECK (DistanceBeast <= 90),
+    CONSTRAINT MagieBeast_max       CHECK (MagieBeast <= 90),
+    CONSTRAINT EsperanceVieBeast_pos       CHECK (EsperanceVieBeast >= 0),
+    CONSTRAINT PvBeast_pos       CHECK (PvBeast >= 0),
+    CONSTRAINT EsBeast_pos       CHECK (EsBeast >= 0),
+    CONSTRAINT ArmureNatBeast_pos       CHECK (ArmureNatBeast >= 0),
+    CONSTRAINT TailleMoyBeast_pos       CHECK (TailleMoyBeast >= 0),
+    CONSTRAINT MasseMoyBeast_pos       CHECK (MasseMoyBeast >= 0)
 );
 
-CREATE TABLE Plantes 
+CREATE TABLE Plants 
 (
     NomPlante           VARCHAR(50),
     TypePlante          VARCHAR(50),
@@ -291,13 +291,13 @@ CREATE TABLE MagiesFusionnees
     CONSTRAINT magie_bis_dans_orient            FOREIGN KEY (NomMagieBis)               REFERENCES Orientations(NomOrientation)      ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
-CREATE TABLE CapsRace
+CREATE TABLE CapsSpecies
 (
-    NomRace             VARCHAR(30),
+    NomSpecies             VARCHAR(30),
     CapSpec             VARCHAR(80),
-    PRIMARY KEY(NomRace, CapSpec),
-    CONSTRAINT races_connues_ayant_cap          FOREIGN KEY (NomRace)               REFERENCES Races(NomRace)                   ON DELETE CASCADE      ON UPDATE CASCADE,
-    CONSTRAINT cap_de_race                      FOREIGN KEY (CapSpec)               REFERENCES CapacitesSpeciales(CapSpec)      ON DELETE CASCADE      ON UPDATE CASCADE
+    PRIMARY KEY(NomSpecies, CapSpec),
+    CONSTRAINT espece_connues_ayant_cap          FOREIGN KEY (NomSpecies)               REFERENCES Species(NomSpecies)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    CONSTRAINT cap_de_espece                      FOREIGN KEY (CapSpec)               REFERENCES CapacitesSpeciales(CapSpec)      ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
 CREATE TABLE OrientPerso
@@ -310,21 +310,21 @@ CREATE TABLE OrientPerso
     CONSTRAINT orient_pour_perso                 FOREIGN KEY (NomOrientation)        REFERENCES Orientations(NomOrientation)                   ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
-CREATE TABLE OrientAnimaux
+CREATE TABLE OrientBeasts
 (
-    NomAnimal           VARCHAR(30),
+    NomBeast           VARCHAR(30),
     NomOrientation      VARCHAR(50),
-    PRIMARY KEY(NomAnimal, NomOrientation),
-    CONSTRAINT animal_ayant_orient_nom                FOREIGN KEY (NomAnimal)               REFERENCES Animaux(NomAnimal)                   ON DELETE CASCADE      ON UPDATE CASCADE,
-    CONSTRAINT orient_pour_animal                 FOREIGN KEY (NomOrientation)        REFERENCES Orientations(NomOrientation)                   ON DELETE CASCADE      ON UPDATE CASCADE
+    PRIMARY KEY(NomBeast, NomOrientation),
+    CONSTRAINT beast_ayant_orient_nom                FOREIGN KEY (NomBeast)               REFERENCES Beasts(NomBeast)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    CONSTRAINT orient_pour_beast                 FOREIGN KEY (NomOrientation)        REFERENCES Orientations(NomOrientation)                   ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
-CREATE TABLE OrientPlantes
+CREATE TABLE OrientPlants
 (
     NomPlante           VARCHAR(30),
     NomOrientation      VARCHAR(50),
     PRIMARY KEY(NomPlante, NomOrientation),
-    CONSTRAINT plante_ayant_orient_nom                FOREIGN KEY (NomPlante)               REFERENCES Plantes(NomPlante)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    CONSTRAINT plante_ayant_orient_nom                FOREIGN KEY (NomPlante)               REFERENCES Plants(NomPlante)                   ON DELETE CASCADE      ON UPDATE CASCADE,
     CONSTRAINT orient_pour_plante                 FOREIGN KEY (NomOrientation)        REFERENCES Orientations(NomOrientation)                   ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
@@ -405,14 +405,14 @@ CREATE TABLE CompFacPos
     CONSTRAINT BonusFP_max       CHECK (BonusFP <= 30)
 );
 
-CREATE TABLE CompRace
+CREATE TABLE CompSpecies
 (
-    NomRace             VARCHAR(30),
+    NomSpecies             VARCHAR(30),
     NomComp             VARCHAR(50),
     BonusR              INT,
-    PRIMARY KEY(NomRace, NomComp),
-    CONSTRAINT race_ayant_bonus_comp                FOREIGN KEY (NomRace)               REFERENCES Races(NomRace)                   ON DELETE CASCADE      ON UPDATE CASCADE,
-    CONSTRAINT bonus_comp_pour_race                 FOREIGN KEY (NomComp)        REFERENCES Competences(NomComp)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    PRIMARY KEY(NomSpecies, NomComp),
+    CONSTRAINT espece_ayant_bonus_comp                FOREIGN KEY (NomSpecies)               REFERENCES Species(NomSpecies)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    CONSTRAINT bonus_comp_pour_espece                 FOREIGN KEY (NomComp)        REFERENCES Competences(NomComp)                   ON DELETE CASCADE      ON UPDATE CASCADE,
     CONSTRAINT BonusR_min       CHECK (BonusR >= -30),
     CONSTRAINT BonusR_max       CHECK (BonusR <= 30)
 );
@@ -441,13 +441,13 @@ CREATE TABLE CompType
     CONSTRAINT BonusT_max       CHECK (BonusT <= 40)
 );
 
-CREATE TABLE FacPosRace
+CREATE TABLE FacPosSpecies
 (
     NomFacPos           VARCHAR(80),
-    NomRace             VARCHAR(30),
-    PRIMARY KEY(NomFacPos, NomRace),
-    CONSTRAINT race_associe               FOREIGN KEY (NomRace)               REFERENCES Races(NomRace)                   ON DELETE CASCADE      ON UPDATE CASCADE,
-    CONSTRAINT facPos_de_race             FOREIGN KEY (NomFacPos)        REFERENCES FacultesPostures(NomFacPos)                   ON DELETE CASCADE      ON UPDATE CASCADE
+    NomSpecies             VARCHAR(30),
+    PRIMARY KEY(NomFacPos, NomSpecies),
+    CONSTRAINT espece_associe               FOREIGN KEY (NomSpecies)               REFERENCES Species(NomSpecies)                   ON DELETE CASCADE      ON UPDATE CASCADE,
+    CONSTRAINT facPos_de_espece             FOREIGN KEY (NomFacPos)        REFERENCES FacultesPostures(NomFacPos)                   ON DELETE CASCADE      ON UPDATE CASCADE
 );
 
 CREATE TABLE FacPosComp

@@ -1,5 +1,5 @@
 
-INSERT INTO TwinWorlds.CapsRace (NomRace,CapSpec) VALUES
+INSERT INTO TwinWorlds.CapsSpecies (NomSpecies,CapSpec) VALUES
 	 ('Dragoïde','Armure Nat +1'),
 	 ('Elfe','Yeux de Nacht'),
 	 ('Félinidé','Yeux de Nacht'),
@@ -55,7 +55,7 @@ INSERT INTO TwinWorlds.CompOrient (NomOrientation,NomComp,BonusO) VALUES
 	 ('Vol','Discrétion',30),
 	 ('Vol','Sabotage',70),
 	 ('Vol','Vol',70);
-INSERT INTO TwinWorlds.CompRace (NomRace,NomComp,BonusR) VALUES
+INSERT INTO TwinWorlds.CompSpecies (NomSpecies,NomComp,BonusR) VALUES
 	 ('Démonide','Constitution',15),
 	 ('Démonide','Discrétion',-10),
 	 ('Démonide','Linguistique',10),
@@ -744,7 +744,7 @@ INSERT INTO TwinWorlds.FacPosOrient (NomFacPos,NomOrientation) VALUES
 	 ('Voeu de silence','Mots'),
 	 ('Vol pur','Air'),
 	 ('Zone de vol d''es','Spirituelle');
-INSERT INTO TwinWorlds.FacPosRace (NomFacPos,NomRace) VALUES
+INSERT INTO TwinWorlds.FacPosSpecies (NomFacPos,NomSpecies) VALUES
 	 ('Absorption gemmique','Nain'),
 	 ('Action de la queue','Félinidé'),
 	 ('Ailes de dragon','Dragoïde'),
