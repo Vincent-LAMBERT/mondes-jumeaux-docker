@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mariadb:
     image: mariadb:latest
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
     environment:
       - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
@@ -19,7 +19,7 @@ services:
         ipv4_address: 172.16.238.10
   image-server:
     build: ./image-server
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
     ports:
       - $IMAGE_SERVER_LOCAL_PORT:$IMAGE_SERVER_DOCKER_PORT
@@ -34,7 +34,7 @@ services:
     depends_on:
       - mariadb
     build: ./website
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT

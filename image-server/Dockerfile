@@ -11,5 +11,5 @@ COPY mondes-jumeaux-servlets/target/mondes-jumeaux-servlets.war /usr/local/tomca
 
 # Access the website with the address http://host:port/image-server/index.jsp
 
-# Serve the app
+# Serve the app and let it run
 CMD ["catalina.sh", "run"]
