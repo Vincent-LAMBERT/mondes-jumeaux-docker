@@ -14,6 +14,7 @@ services:
       - ./database/database/initDatabase.sql:/docker-entrypoint-initdb.d/1.sql
       - ./database/database/fillBase.sql:/docker-entrypoint-initdb.d/2.sql
       - ./database/database/fillRelations.sql:/docker-entrypoint-initdb.d/3.sql
+      - ./database/database/fillCharacterTest.sql:/docker-entrypoint-initdb.d/4.sql
     networks:
       tw_network:
         ipv4_address: 172.16.238.10
